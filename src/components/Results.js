@@ -9,14 +9,6 @@ class Results extends Component {
     return (
       results &&
       <div className="results">
-        <h4>Special effects</h4>
-        <div className="specials-results">
-          {
-            results.specials &&
-            results.specials.map((s, i) =>
-              <p className="special" key={`special-${i}`}>{s}</p>)
-          }
-        </div>
         <h4>Runes</h4>
         <div className="runes-results">
           {
@@ -39,15 +31,26 @@ class Results extends Component {
             )
           }
         </div>
-        
+
         <h4>Ancient enemy</h4>
-        {
-          <p>{results.ancient_enemy || "None"}</p>
-        }
+        <p>{results.ancient_enemy || "None"}</p>
         <h4>New enemy</h4>
+        <p>{results.new_enemy || "None"}</p>
+        <h4>Wyter abilities</h4>
         {
-          <p>{results.new_enemy || "None"}</p>
+          results.wyter_abilities &&
+          results.wyter_abilities.map((ability, i) =>
+            <p key={`ability-${i}`}>{ability}</p>
+          )
         }
+        <h4>Special effects</h4>
+        <div className="specials-results">
+          {
+            results.specials &&
+            results.specials.map((s, i) =>
+              <p className="special" key={`special-${i}`}>{s}</p>)
+          }
+        </div>
       </div>
     )
   }
@@ -60,7 +63,8 @@ Results.propTypes = {
     virtue_modifiers: PropTypes.object,
     specials: PropTypes.arrayOf(PropTypes.string),
     ancient_enemy: PropTypes.string,
-    new_enemy: PropTypes.string
+    new_enemy: PropTypes.string,
+    wyter_abilities: PropTypes.arrayOf(PropTypes.string)
   })
 }
 

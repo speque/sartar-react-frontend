@@ -34,6 +34,7 @@ class App extends Component {
     this.state = {
       questions: [],
       answers: [],
+      inputs: [],
       results: null,
       error: null
     }
@@ -41,6 +42,7 @@ class App extends Component {
     this.fetchQuestions = this.fetchQuestions.bind(this)
     this.submitAnswers = this.submitAnswers.bind(this)
     this.setAnswer = this.setAnswer.bind(this)
+    this.setInput = this.setInput.bind(this)
     this.getMaskedAnswers = this.getMaskedAnswers.bind(this)
     this.randomizeAnswers = this.randomizeAnswers.bind(this)
   }
@@ -52,9 +54,11 @@ class App extends Component {
   async fetchQuestions() {
     return axios.post('http://localhost:3001/graphql', {query: questionsQuery})
       .then((response) => {
+        const data = response.data.data
         this.setState({
-          questions: response.data.data.questions,
-          answers: Array(response.data.data.questions.length).fill(-1),
+          questions: data.questions,
+          answers: Array(data.questions.length).fill(-1),
+          inputs: Array(data.questions.length),
           error: null
         })
       })
@@ -64,14 +68,12 @@ class App extends Component {
         })
         console.error(error)
       })
-      .then(() => {
-        // always executed
-      });
   }
 
   async submitAnswers() {
     return axios.post('http://localhost:3001/', {
-      answers: this.getMaskedAnswers()
+      answers: this.getMaskedAnswers(),
+      inputs: this.state.inputs
     }).then((response) => {
       this.setState({
         results: response.data,
@@ -88,6 +90,12 @@ class App extends Component {
   setAnswer(questionIndex, answer) {
     this.setState({
       answers: Object.assign([...this.state.answers], { [questionIndex]: answer })
+    })
+  }
+
+  setInput(questionIndex, meaning, text) {
+    this.setState({
+      inputs: Object.assign([...this.state.inputs], { [questionIndex]: {meaning, text} })
     })
   }
 
@@ -116,7 +124,8 @@ class App extends Component {
         <Questions
           questions={this.state.questions}
           answers={this.state.answers}
-          setAnswer={this.setAnswer} />
+          setAnswer={this.setAnswer}
+          setInput={this.setInput} />
 
         {
           this.state.error &&

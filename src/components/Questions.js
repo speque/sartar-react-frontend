@@ -115,7 +115,7 @@ class Questions extends Component {
                             type="text"
                             value={this.state.value}
                             placeholder=""
-                            //onChange={this.handleChange}
+                            onChange={(e) => this.props.setInput(activeQuestionIndex, activeQuestion.input.meaning, e.target.value)}
                           />
                         </FormGroup>
                       }
@@ -158,6 +158,10 @@ Questions.propTypes = {
     query: PropTypes.string,
     notes: PropTypes.string,
     disabled_by: PropTypes.arrayOf(PropTypes.number),
+    input: PropTypes.exact({
+      title: PropTypes.string.isRequired,
+      meaning: PropTypes.string.isRequired
+    }),
     options: PropTypes.arrayOf(PropTypes.exact({
       title: PropTypes.string.isRequired,
       rune: PropTypes.string,
@@ -166,7 +170,8 @@ Questions.propTypes = {
     }))
   })).isRequired,
   answers: PropTypes.arrayOf(PropTypes.number).isRequired,
-  setAnswer: PropTypes.func.isRequired
+  setAnswer: PropTypes.func.isRequired,
+  setInput: PropTypes.func.isRequired
 }
 
 export default Questions
