@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { Badge } from 'react-bootstrap'
+import ReactMarkdown from 'react-markdown'
 import Results from './Results'
 import Rune from './Rune'
 
@@ -19,7 +20,11 @@ describe('Results', () => {
       specials
     }
     const wrapper = shallow(<Results results={results} />)
-    expect(wrapper.find('p.special').first().text()).toEqual('Special ability')
+    expect(wrapper
+        .find('div.specials-results')
+        .find(ReactMarkdown)
+        .prop('children'))
+      .toEqual('Special ability')
   })
 
   it('renders runes', () => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Badge } from 'react-bootstrap'
+import ReactMarkdown from 'react-markdown'
 import Rune from './Rune'
 
 class Results extends Component {
@@ -48,7 +49,7 @@ class Results extends Component {
           {
             results.specials &&
             results.specials.map((s, i) =>
-              <p className="special" key={`special-${i}`}>{s}</p>)
+              <ReactMarkdown key={`special-${i}`}>{s}</ReactMarkdown>)
           }
         </div>
       </div>
