@@ -32,6 +32,17 @@ class Results extends Component {
             )
           }
         </div>
+        <h4>Virtues</h4>
+        <div className="virtue-results">
+          {
+            results.virtue_modifiers &&
+            Object.entries(results.virtue_modifiers).map(([k, v]) =>
+              <p key={`virtue-modifier-${k}`}>
+                <span>{k} <Badge>{v}</Badge></span>
+              </p>
+            )
+          }
+        </div>
 
         <h4>Ancient enemy</h4>
         <p>{results.ancient_enemy || "None"}</p>
