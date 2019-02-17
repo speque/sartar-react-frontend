@@ -16,7 +16,14 @@ const runes = {
   life: 'x',
   communication: 'h',
   law: 'a',
-  eternal_battle: 'V'
+  eternal_battle: 'V',
+  man: ',',
+  fire: '.',
+  spirit: 'b',
+  yinkin: 'Y',
+  darkness: 'o',
+  beast: 'B'
+
 }
 
 export default runes
