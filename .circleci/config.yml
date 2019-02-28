@@ -49,7 +49,7 @@ jobs: # a collection of steps
       - aws-s3/sync:
           from: build
           to: 's3://sartar-clan-questionnaire/react-frontend'
-          arguments: |
-            --acl public-read \
-            --cache-control "max-age=86400"
+          #arguments: |
+          #  --acl public-read \
+          #  --cache-control "max-age=86400"
           overwrite: true
