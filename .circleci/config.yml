@@ -43,6 +43,9 @@ jobs: # a collection of steps
       #    prefix: coverage
       #- store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
       #    path: test-results.xml
+      - run:
+          name: install-python-dev
+          command: sudo apt-get install python-dev
       - aws-s3/sync:
           from: build
           to: 's3://sartar-clan-questionnaire/react-frontend'
