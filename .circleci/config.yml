@@ -1,4 +1,6 @@
 version: 2 # use CircleCI 2.0
+orbs:
+  aws-s3: circleci/aws-s3@1.0.4
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
     working_directory: ~/sartar-react-frontend # directory where steps will run
@@ -41,4 +43,10 @@ jobs: # a collection of steps
       #    prefix: coverage
       #- store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
       #    path: test-results.xml
-      # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
+      - aws-s3/sync:
+          from: build
+          to: 's3://sartar-clan-questionnaire/react-frontend'
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=86400"
+          overwrite: true
