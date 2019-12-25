@@ -22,11 +22,10 @@
     "test": "react-scripts test",
     "test-with-jsdom": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "precommit": "lint-staged",
     "analyze": "source-map-explorer build/static/js/main.*"
   },
   "devDependencies": {
-    "husky": "^1.0.0-rc.15",
+    "husky": "^3.1.0",
     "lint-staged": "^8.1.0",
     "prettier": "^1.14.3"
   },
@@ -41,5 +40,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }
