@@ -5,15 +5,12 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "axios": "0.19.0",
-    "enzyme": "^3.6.0",
-    "enzyme-adapter-react-16": "^1.5.0",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.5.1",
     "react-markdown": "^4.0.6",
-    "react-scripts": "3.3.0",
-    "react-test-renderer": "^16.5.2"
+    "react-scripts": "3.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -24,9 +21,12 @@
     "analyze": "react-scripts build && source-map-explorer build/static/js/main.*"
   },
   "devDependencies": {
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
     "husky": "^3.1.0",
     "lint-staged": "^8.1.0",
     "prettier": "^1.14.3",
+    "react-test-renderer": "^16.5.2",
     "source-map-explorer": "^2.1.2"
   },
   "lint-staged": {
