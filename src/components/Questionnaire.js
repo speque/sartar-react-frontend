@@ -133,7 +133,7 @@ class Questionnaire extends Component {
         />
 
         {this.state.error && (
-          <Alert bsStyle="warning">{this.state.error}</Alert>
+          <Alert variant="warning">{this.state.error}</Alert>
         )}
 
         <ButtonGroup>

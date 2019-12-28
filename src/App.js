@@ -1,5 +1,4 @@
 import React from 'react'
-import { PageHeader } from 'react-bootstrap'
 import { Router, Link } from '@reach/router'
 import Questionnaire from './components/Questionnaire'
 import './App.css'
@@ -24,9 +23,9 @@ const NotFound = () => (
 
 const App = () => (
   <div className="App">
-    <PageHeader>
+    <h1>
       Sartar: Kingdom of Heroes <small>Clan questionnaire</small>
-    </PageHeader>
+    </h1>
 
     <Router>
       <Home path="/" />

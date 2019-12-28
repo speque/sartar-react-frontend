@@ -1,8 +1,8 @@
 @font-face {
-    font-family: 'Glorantha Core Runes';
-    src: url('./fonts/GloranthaCoreRunes.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Glorantha Core Runes';
+  src: url('./fonts/GloranthaCoreRunes.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
 .App {
@@ -14,8 +14,16 @@
 }
 
 .App-questions {
-  text-align: left;
   padding: 10px 10%;
+}
+
+.question {
+  text-align: left;
+}
+
+.optionLabel {
+  font-weight: normal;
+  padding-left: 20px;
 }
 
 .runes {
@@ -30,5 +38,5 @@ label .runes {
 }
 
 .erroneous {
-  color: red
+  color: red;
 }

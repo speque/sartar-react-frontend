@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
+  Form,
   FormGroup,
   FormControl,
-  ControlLabel,
-  Radio,
-  Pager
+  FormLabel,
+  Pagination
 } from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown'
 import Rune from './Rune'
@@ -64,7 +64,7 @@ class Questions extends Component {
       return (
         <div className="App-questions">
           {activeQuestion && (
-            <div>
+            <div className="question">
               {activeQuestion.disabled_by &&
               this.props.answers[activeQuestion.disabled_by[0]] ===
                 activeQuestion.disabled_by[1] ? (
@@ -76,7 +76,7 @@ class Questions extends Component {
                     <ReactMarkdown>{activeQuestion.description}</ReactMarkdown>
                   )}
                   {activeQuestion.query && <h4>{activeQuestion.query}</h4>}
-                  <FormGroup>
+                  <Form>
                     {activeQuestion.options.map((option, j) => {
                       const isDisabled =
                         option.disabled_by &&
@@ -89,36 +89,37 @@ class Questions extends Component {
                           {option.explanation && (
                             <ReactMarkdown>{option.explanation}</ReactMarkdown>
                           )}
-                          <Radio
+                          <Form.Check
+                            type="radio"
                             className={isDisabled && checked && 'erroneous'}
                             name="radioGroup"
-                            checked={checked}
                             disabled={isDisabled}
                             onChange={() =>
                               this.props.setAnswer(activeQuestionIndex, j)
                             }
                           >
-                            <ReactMarkdown
-                              disallowedTypes={[
-                                'list',
-                                'listItem',
-                                'paragraph'
-                              ]}
-                              unwrapDisallowed={true}
-                            >
-                              {`${j + 1}. ${option.title}`}
-                            </ReactMarkdown>
-                            {option.rune && <Rune rune={option.rune} />}
-                          </Radio>
+                            <Form.Check.Input type="radio" checked={checked} />
+                            <Form.Check.Label className="optionLabel">
+                              <ReactMarkdown
+                                disallowedTypes={[
+                                  'list',
+                                  'listItem',
+                                  'paragraph'
+                                ]}
+                                unwrapDisallowed={true}
+                              >
+                                {`${j + 1}. ${option.title}`}
+                              </ReactMarkdown>
+                              {option.rune && <Rune rune={option.rune} />}
+                            </Form.Check.Label>
+                          </Form.Check>
                         </React.Fragment>
                       )
                     })}
                     {activeQuestion.input &&
                       this.props.answers[activeQuestionIndex] !== -1 && (
                         <FormGroup>
-                          <ControlLabel>
-                            {activeQuestion.input.title}
-                          </ControlLabel>
+                          <FormLabel>{activeQuestion.input.title}</FormLabel>
                           <FormControl
                             type="text"
                             value={this.state.value}
@@ -133,7 +134,7 @@ class Questions extends Component {
                           />
                         </FormGroup>
                       )}
-                  </FormGroup>
+                  </Form>
                   {activeQuestion.notes && (
                     <ReactMarkdown>{activeQuestion.notes}</ReactMarkdown>
                   )}
@@ -142,26 +143,28 @@ class Questions extends Component {
             </div>
           )}
 
-          <Pager>
-            <Pager.Item
-              previous
-              href="#"
+          <Pagination className="pagination">
+            <Pagination.First onClick={() => this.setActiveQuestion(0)} />
+            <Pagination.Prev
               disabled={this.state.activeQuestion <= 0}
               onClick={this.decrementActiveQuestion}
             >
-              &larr Previous
-            </Pager.Item>
-            <Pager.Item
-              next
-              href="#"
+              &lsaquo; Previous
+            </Pagination.Prev>
+            <Pagination.Next
               disabled={
                 this.state.activeQuestion >= this.props.questions.length - 1
               }
               onClick={this.incrementActiveQuestion}
             >
-              Next &rarr
-            </Pager.Item>
-          </Pager>
+              Next &rsaquo;
+            </Pagination.Next>
+            <Pagination.Last
+              onClick={() =>
+                this.setActiveQuestion(this.props.questions.length - 1)
+              }
+            />
+          </Pagination>
         </div>
       )
     }

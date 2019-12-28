@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Row, Col, Badge } from 'react-bootstrap'
+import { Container, Row, Col, Badge } from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown'
 import Rune from './Rune'
 
@@ -9,7 +9,7 @@ class Results extends Component {
     const results = this.props.results
     return (
       results && (
-        <Grid className="results">
+        <Container className="results">
           <Row>
             <Col xs={4} md={4}>
               <h4>Runes</h4>
@@ -84,7 +84,7 @@ class Results extends Component {
               </div>
             </Col>
           </Row>
-        </Grid>
+        </Container>
       )
     )
   }
