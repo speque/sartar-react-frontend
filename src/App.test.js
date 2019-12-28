@@ -2,7 +2,6 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import axios from 'axios'
 import App from './App'
-import { PageHeader } from 'react-bootstrap'
 
 jest.mock('axios')
 
@@ -18,9 +17,9 @@ it('renders page header', () => {
   const wrapper = shallow(<App />)
   expect(
     wrapper.contains(
-      <PageHeader>
+      <h1>
         Sartar: Kingdom of Heroes <small>Clan questionnaire</small>
-      </PageHeader>
+      </h1>
     )
   ).toEqual(true)
 })
