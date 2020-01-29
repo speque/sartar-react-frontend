@@ -21,6 +21,10 @@
   text-align: left;
 }
 
+.optionInput {
+  position: absolute;
+}
+
 .optionLabel {
   font-weight: normal;
   padding-left: 20px;

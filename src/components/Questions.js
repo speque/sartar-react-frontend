@@ -92,14 +92,22 @@ class Questions extends Component {
                           <Form.Check
                             type="radio"
                             className={isDisabled && checked && 'erroneous'}
-                            name="radioGroup"
-                            disabled={isDisabled}
-                            onChange={() =>
-                              this.props.setAnswer(activeQuestionIndex, j)
-                            }
                           >
-                            <Form.Check.Input type="radio" checked={checked} />
-                            <Form.Check.Label className="optionLabel">
+                            <Form.Check.Input
+                              className="optionInput"
+                              id={`option-${activeQuestionIndex}-${j}`}
+                              type={'radio'}
+                              name={`options-${activeQuestionIndex}`}
+                              checked={checked}
+                              onChange={() =>
+                                this.props.setAnswer(activeQuestionIndex, j)
+                              }
+                              disabled={isDisabled}
+                            />
+                            <Form.Check.Label
+                              className="optionLabel"
+                              htmlFor={`option-${activeQuestionIndex}-${j}`}
+                            >
                               <ReactMarkdown
                                 disallowedTypes={[
                                   'list',
